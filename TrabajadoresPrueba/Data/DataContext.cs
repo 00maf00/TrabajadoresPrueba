@@ -12,5 +12,6 @@ namespace TrabajadoresPrueba.Data
         }
 
         public DbSet<Departamento> Departamento { get; set; }
+        public DbSet<Provincia> Provincia { get; set; }
     }
 }
