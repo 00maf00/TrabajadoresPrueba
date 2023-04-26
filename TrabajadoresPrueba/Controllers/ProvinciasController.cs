@@ -24,9 +24,9 @@ namespace TrabajadoresPrueba.Controllers
         }
 
         //GET 
-        public IActionResult Create(int idDepartamento)
+        public IActionResult Create(int idDepartamento) //trae el ID del departamento 
         {
-            var provincia = new Provincia { IdDepartamento = idDepartamento };
+            var provincia = new Provincia { IdDepartamento = idDepartamento }; 
             return View(provincia);
         }
 
@@ -58,13 +58,16 @@ namespace TrabajadoresPrueba.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
+            var idDepartamento = 0;
             var provincia = await _context.Provincia.FindAsync(id);
             if (provincia != null)
             {
+                idDepartamento = provincia.IdDepartamento;
                 _context.Remove(provincia);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new { id = idDepartamento });
+
         }
     }
 }

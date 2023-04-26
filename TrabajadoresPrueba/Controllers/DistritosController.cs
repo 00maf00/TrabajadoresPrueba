@@ -20,6 +20,8 @@ namespace TrabajadoresPrueba.Controllers
             var distrito = await _context.Distrito.Where(x => x.IdProvincia.Equals(id)).ToListAsync();
             var modelProvincia = await _context.Provincia.FindAsync(id);
             ViewBag.Provincia = modelProvincia;
+            var modelDepartamento = await _context.Departamento.FindAsync(modelProvincia.IdDepartamento);
+            ViewBag.Departamento = modelDepartamento;
             return View(distrito);
         }
 
