@@ -2,11 +2,11 @@
 
 namespace TrabajadoresPrueba.Modelos
 {
-    public class Provincia
+    public class Distrito
     {
         public int Id { get; set; }
         [Required]
-        public string NombreProvincia {  get; set; } = string.Empty;
-        public int IdDepartamento { get; set; }
+        public string NombreDistrito { get; set; } = string.Empty;
+        public int IdProvincia { get; set; }
     }
 }
