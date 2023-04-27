@@ -51,7 +51,6 @@ namespace TrabajadoresPrueba.Controllers
             var modelOld = await _context.Provincia.FindAsync(model.Id);
             modelOld.NombreProvincia = model.NombreProvincia;
             _context.Update(modelOld); // update en provincia 
-            //await _context.Provincia.AddAsync(model); 
             await _context.SaveChangesAsync(); //comit a la base de datos
             return RedirectToAction("Index", new { id = model.IdDepartamento });
         }
