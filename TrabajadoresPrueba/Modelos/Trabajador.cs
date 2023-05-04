@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace TrabajadoresPrueba.Modelos
 {
@@ -22,5 +24,32 @@ namespace TrabajadoresPrueba.Modelos
         public int IdProvincia { get; set; }
         [DisplayName("Distrito")]
         public int IdDistrito { get; set; }
+
+        public string? Ficha { get; set; } = string.Empty;
+
+        public string? Foto { get; set; } = string.Empty;
+        [NotMapped]
+        public IFormFile FichaIFormFile { get; set; }
+
+        [NotMapped]
+        public IFormFile FotoIFormFile { get; set; }
+
+        public string FichaURL => Ficha == null ? "" : Ficha;
+
+        public string FichaURL2
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Ficha))
+                {
+                    return "";
+                }
+                else
+                {
+                    return $"https://localhost:7067/{Ficha}";
+                }
+            }
+        }
+
     }
 }

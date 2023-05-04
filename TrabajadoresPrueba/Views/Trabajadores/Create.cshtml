@@ -67,6 +67,14 @@
                     </div>
                 </div>
             </div>
+            div class="col col-sm-12">
+            <div class="form-group">
+                <div class="input text">
+                    <label asp-for="FichaIFormFile" class="control-label"></label>
+                    <input asp-for="FichaIFormFile" type="file">
+                    <span asp-validation-for="FichaIFormFile" class="text-danger"></span>
+                </div>
+            </div>
             <div class="col col-sm-12 text-right">
                 <div class="form-group">
                     <input type="submit" value="Guardar" class="btn btn-success" />

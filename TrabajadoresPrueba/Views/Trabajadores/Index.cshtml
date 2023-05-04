@@ -12,6 +12,8 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Nombres)
                     </th>
+                    <th>Ficha</th>
+
                     <th></th>
                 </tr>
             </thead>
@@ -21,6 +23,12 @@
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Nombres)
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Ficha))
+                            {
+                                <a href="@item.FichaURL2" target="_blank">Clip</a>
+                            }
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning infoObser-dialog-window">Editar</a>
