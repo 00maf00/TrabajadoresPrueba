@@ -59,9 +59,15 @@ namespace TrabajadoresPrueba.Controllers
         public async Task<IActionResult> Create(Trabajador model)
         {
             var prueba = model.FichaIFormFile;
-            if (model.FichaIFormFile != null)
+            if (model.FichaIFormFile != null) //adjunto un archivo 
             {
                 model.Ficha = await CargarDocumento(model.FichaIFormFile, "Ficha");
+            }
+
+            var prueba2 = model.FotoIFormFile;
+            if (model.FotoIFormFile!= null) 
+            {
+                model.Foto = await CargarDocumento2(model.FotoIFormFile, "Foto");
             }
 
             _context.Add(model);
@@ -73,13 +79,26 @@ namespace TrabajadoresPrueba.Controllers
         {
             var guid = Guid.NewGuid().ToString();
             var fileName = guid + Path.GetExtension(fichaIformFile.FileName);
-            //var carga1 = Path.Combine(_webHostEnvironment.WebRootPath, "Imagenes", ruta);
-            var carga = Path.Combine(_webHostEnvironment.WebRootPath, string.Format("Imagenes/{0}", ruta));
-            using (var fileStream = new FileStream(Path.Combine(carga, fileName), FileMode.Create))
+            var carga1 = Path.Combine(_webHostEnvironment.WebRootPath, "images", ruta);
+            //var carga = Path.Combine(_webHostEnvironment.WebRootPath, string.Format("Imagenes/{0}", ruta));
+            using (var fileStream = new FileStream(Path.Combine(carga1, fileName), FileMode.Create))
             {
                      await fichaIformFile.CopyToAsync(fileStream);
             }
-            return string.Format("/Imagenes/{0}/{1}", ruta, fileName);
+            return string.Format("/images/{0}/{1}", ruta, fileName);
+        }
+
+        private async Task<String> CargarDocumento2(IFormFile fotoIformFile, string ruta)
+        {
+            var guid = Guid.NewGuid().ToString();
+            var fileName = guid + Path.GetExtension(fotoIformFile.FileName);
+            var carga1 = Path.Combine(_webHostEnvironment.WebRootPath, "images", ruta);
+            //var carga = Path.Combine(_webHostEnvironment.WebRootPath, string.Format("Imagenes/{0}", ruta));
+            using (var fileStream = new FileStream(Path.Combine(carga1, fileName), FileMode.Create))
+            {
+                await fotoIformFile.CopyToAsync(fileStream);
+            }
+            return string.Format("/images/{0}/{1}", ruta, fileName);
         }
     }
 }

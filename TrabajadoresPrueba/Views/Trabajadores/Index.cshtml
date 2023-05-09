@@ -13,8 +13,7 @@
                         @Html.DisplayNameFor(model => model.Nombres)
                     </th>
                     <th>Ficha</th>
-
-                    <th></th>
+                    <th>Foto</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +26,13 @@
                         <td>
                             @if (!string.IsNullOrEmpty(item.Ficha))
                             {
-                                <a href="@item.FichaURL2" target="_blank">Clip</a>
+                                <a href="@item.FichaURL2" target="_blank">Ficha</a>
+                            }
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Foto))
+                            {
+                                <a href="@item.FotoURL2" target="_blank">Foto</a>
                             }
                         </td>
                         <td>

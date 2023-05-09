@@ -8,13 +8,17 @@ namespace TrabajadoresPrueba.Modelos
     public class Trabajador
     {
         public int Id { get; set; }
-        [Required]
+        [DisplayName("Tipo Documento")]
+
         public string TipoDocumento { get; set; } = string.Empty;
-        [Required]
+        [DisplayName("Número Documento")]
+
         public string NumeroDocumento { get; set; } = string.Empty;
-        [Required]
+        [DisplayName("Nombres")]
+
         public string Nombres { get; set; } = string.Empty;
-        [Required]
+        [DisplayName("Sexo")]
+
         public string Sexo { get; set; } = string.Empty;
         [DisplayName ("Departamento")]
 
@@ -25,11 +29,12 @@ namespace TrabajadoresPrueba.Modelos
         [DisplayName("Distrito")]
         public int IdDistrito { get; set; }
 
-        public string? Ficha { get; set; } = string.Empty;
+        //nombre de los archivos
+        public string? Ficha { get; set; } 
 
-        public string? Foto { get; set; } = string.Empty;
+        public string? Foto { get; set; } 
         [NotMapped]
-        public IFormFile FichaIFormFile { get; set; }
+        public IFormFile FichaIFormFile { get; set; } // bits 
 
         [NotMapped]
         public IFormFile FotoIFormFile { get; set; }
@@ -51,5 +56,20 @@ namespace TrabajadoresPrueba.Modelos
             }
         }
 
+        public string FotoURL => Foto == null ? "" : Foto;
+        public string FotoURL2
+        {
+            get 
+            {
+                if (string.IsNullOrEmpty(Foto))
+                {
+                    return "";
+                }
+                else
+                {
+                    return $"https://localhost:7067/{Foto}";
+                }
+            }
+        }
     }
 }
